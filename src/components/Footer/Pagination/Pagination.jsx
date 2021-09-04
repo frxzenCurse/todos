@@ -3,10 +3,10 @@ import cl from './Pagination.module.css'
 
 const Pagination = ({ sortCompleted }) => {
 
-  const [arr, setArr] = useState(['All', 'Active', 'Complete'])
+  const arr = ['All', 'Active', 'Complete']
 
   function sort() {
-      sortCompleted(arr)
+    sortCompleted()
   }
 
   return (

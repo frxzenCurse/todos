@@ -16,16 +16,17 @@ function App() {
   function removeItem(item) {
     setItems(items.filter(el => el !== item))
   }
-
-  function complete(complete) {
-    setCompleteItems([...completeItems, complete])
-  }
-
-  function sortComplete(arr) {
-    if (arr.includes('Complete')) {
-      setItems()
+  
+  function complete(complete, isComplete) {
+    if (!isComplete) {
+      setCompleteItems([...completeItems, complete])
+    } else {
+      setCompleteItems([...completeItems].filter(item => item !== complete))
     }
-    
+  }
+  // useMemo
+  function sortComplete() {
+    setItems([...items].filter(x => completeItems.includes(x)))
   }
 
   return (

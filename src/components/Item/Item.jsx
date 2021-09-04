@@ -10,10 +10,11 @@ const Item = ({ completed, ...props }) => {
     if (!isComplete) {
       setRootClasses([...rootClasses, cl.complete])
       setIsComplete(true)
-      completed(props.text)
+      completed(props.text, false)
     } else {
       setRootClasses(rootClasses.filter(item => item !== cl.complete))
       setIsComplete(false)
+      completed(props.text, true)
     }
   }
 
