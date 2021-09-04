@@ -29,6 +29,10 @@ function App() {
     setItems([...items].filter(x => completeItems.includes(x)))
   }
 
+  function sortActive() {
+    setItems([...items].filter(x => !completeItems.includes(x)))
+  }
+
   return (
     <div className="App">
       <div className='container'>
@@ -43,6 +47,7 @@ function App() {
           <Footer
             num={items.length}
             completed={sortComplete}
+            active={sortActive}
           />
         }
       </div>
