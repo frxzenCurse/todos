@@ -7,27 +7,42 @@ import MyInput from './components/MyInput/MyInput';
 function App() {
 
   const [items, setItems] = useState(['asd', 'qwe', 'zxc'])
-  const [value, setValue] = useState('')
+  const [completeItems, setCompleteItems] = useState([])
 
-  function addItems(event) {
-    if (event.keyCode === 13 && value) {
-      setItems([...items, value])
-      setValue('')
-    }
+  function create(item) {
+    setItems([...items, item])
   }
 
   function removeItem(item) {
     setItems(items.filter(el => el !== item))
   }
 
+  function complete(complete) {
+    setCompleteItems([...completeItems, complete])
+  }
+
+  function sortComplete(arr) {
+    if (arr.includes('Complete')) {
+      setItems()
+    }
+    
+  }
+
   return (
     <div className="App">
       <div className='container'>
         <h1 className='title'>todos</h1>
-        <MyInput value={value} onChange={event => setValue(event.target.value)} onKeyDown={e => addItems(e)} />
-        <ItemList items={items} event={removeItem} />
+        <MyInput create={create} />
+        <ItemList
+          items={items}
+          event={removeItem}
+          completes={complete}
+        />
         {items.length !== 0 &&
-          <Footer num={items.length} />
+          <Footer
+            num={items.length}
+            completed={sortComplete}
+          />
         }
       </div>
     </div>

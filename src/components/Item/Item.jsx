@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import cl from './Item.module.css'
 
-const Item = (props) => {
+const Item = ({ completed, ...props }) => {
 
   const [rootClasses, setRootClasses] = useState([cl.item])
   const [isComplete, setIsComplete] = useState(false)
@@ -10,6 +10,7 @@ const Item = (props) => {
     if (!isComplete) {
       setRootClasses([...rootClasses, cl.complete])
       setIsComplete(true)
+      completed(props.text)
     } else {
       setRootClasses(rootClasses.filter(item => item !== cl.complete))
       setIsComplete(false)
