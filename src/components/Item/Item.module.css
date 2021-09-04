@@ -10,21 +10,51 @@
   border-top: 1px solid rgba(0, 0, 0, .3);
   border-bottom: 1px solid rgba(0, 0, 0, .3);
   background-color: white;
+  transition: .5s;
 }
 
 .item:hover .mark {
   opacity: 1;
 }
 
-.checkbox {
-  margin: 0;
+.item.complete {
+  background: rgba(175, 170, 170, 0.4);
 }
+
+.item.complete > .checkbox {
+  background-color: coral;
+}
+.item.complete > .text {
+  text-decoration: line-through;
+}
+
+.checkboxInput {
+  margin: 0;
+  position: absolute;
+
+  width: 1px;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+.checkbox {
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: .5s;
+}
+
 
 .text {
   width: 80%;
 
   font-size: 25px;
   line-height: 100%;
+  transition: .5s;
 }
 
 .button {

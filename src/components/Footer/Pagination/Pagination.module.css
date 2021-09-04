@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+}
+
+.item {
+  padding: 2px 4px;
+
+  transition: .5s;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.item:hover {
+  border-color: coral;
+}
+
+.item.active {
+  border-color: coral;
+}
+
+.item:not(:first-child) {
+  margin-left: 5px;
+}

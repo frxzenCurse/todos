@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Footer from './components/Footer/Footer';
 import ItemList from './components/ItemList';
 import MyInput from './components/MyInput/MyInput';
 
@@ -25,6 +26,9 @@ function App() {
         <h1 className='title'>todos</h1>
         <MyInput value={value} onChange={event => setValue(event.target.value)} onKeyDown={e => addItems(e)} />
         <ItemList items={items} event={removeItem} />
+        {items.length !== 0 &&
+          <Footer num={items.length} />
+        }
       </div>
     </div>
   );
