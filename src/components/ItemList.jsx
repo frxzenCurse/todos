@@ -4,12 +4,13 @@ const ItemList = ({ items, event, completes }) => {
 
   return (
     <div>
-      {items.map(item =>
+      {items.map((item, i) =>
         <Item 
           text={item} 
           key={item} 
           action={event} 
           completed={completes}
+          point={i}
         />
       )}
     </div>

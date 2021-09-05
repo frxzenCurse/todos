@@ -17,7 +17,7 @@ function App() {
   function removeItem(item) {
     setItems(items.filter(el => el !== item))
   }
-  
+
   function complete(complete, isComplete) {
     if (!isComplete) {
       setCompleteItems([...completeItems, complete])
@@ -25,7 +25,7 @@ function App() {
       setCompleteItems([...completeItems].filter(item => item !== complete))
     }
   }
-  // useMemo
+
   const filteredItems = useMemo(() => {
     if (filter === 'All') {
       return items
@@ -40,6 +40,10 @@ function App() {
     setFilter(isAll)
   }
 
+  const itemsCount = useMemo(() => {
+    return (items.length - completeItems.length)
+  }, [items, completeItems])
+
   return (
     <div className="App">
       <div className='container'>
@@ -52,12 +56,10 @@ function App() {
         />
         {items.length !== 0 &&
           <Footer
-            num={items.length}
+            num={itemsCount}
             filter={getFilter}
           />
         }
-        {/* <button>all</button>
-        <button>complete</button> */}
       </div>
     </div>
   );
