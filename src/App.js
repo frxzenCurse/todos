@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import ItemList from './components/ItemList';
@@ -8,6 +8,7 @@ function App() {
 
   const [items, setItems] = useState(['asd', 'qwe', 'zxc'])
   const [completeItems, setCompleteItems] = useState([])
+  const [filter, setFilter] = useState('All')
 
   function create(item) {
     setItems([...items, item])
@@ -25,12 +26,18 @@ function App() {
     }
   }
   // useMemo
-  function sortComplete() {
-    setItems([...items].filter(x => completeItems.includes(x)))
-  }
+  const filteredItems = useMemo(() => {
+    if (filter === 'All') {
+      return items
+    } else if (filter === 'Complete') {
+      return [...items].filter(x => completeItems.includes(x))
+    } else {
+      return [...items].filter(x => !completeItems.includes(x))
+    }
+  }, [items, completeItems, filter])
 
-  function sortActive() {
-    setItems([...items].filter(x => !completeItems.includes(x)))
+  function getFilter(isAll) {
+    setFilter(isAll)
   }
 
   return (
@@ -39,17 +46,18 @@ function App() {
         <h1 className='title'>todos</h1>
         <MyInput create={create} />
         <ItemList
-          items={items}
+          items={filteredItems}
           event={removeItem}
           completes={complete}
         />
         {items.length !== 0 &&
           <Footer
             num={items.length}
-            completed={sortComplete}
-            active={sortActive}
+            filter={getFilter}
           />
         }
+        {/* <button>all</button>
+        <button>complete</button> */}
       </div>
     </div>
   );

@@ -1,36 +1,20 @@
-import { useState } from 'react/cjs/react.development'
 import cl from './Pagination.module.css'
 
-const Pagination = ({ sortCompleted, sortAct }) => {
+const Pagination = ({ action }) => {
 
-
-  function sortComple() {
-    sortCompleted()
-  }
-
-  function sortActive() {
-    sortAct()
-  }
+  const arr = ['All', 'Active', 'Complete']
 
   return (
     <div className={cl.pagination}>
-      <div
-        className={[cl.item, cl.active].join(' ')}
-      >
-        All
-      </div>
-      <div
-        className={cl.item}
-        onClick={sortActive}
-      >
-        Active
-      </div>
-      <div
-        className={cl.item}
-        onClick={sortComple}
-      >
-        Complete
-      </div>
+      {arr.map(item =>
+        <div
+          className={cl.item}
+          onClick={() => action(item)}
+          key={item}
+        >
+          {item}
+        </div>
+      )}
     </div>
   )
 }
